@@ -31,8 +31,15 @@ local function testNextToken()
 end
 
 local function run_tests()
+    local start_time = os.clock() -- Record the start time
+
     testNextToken()
+
+    local end_time = os.clock() -- Record the end time
+    local elapsed_time = end_time - start_time -- Calculate the elapsed time
+
     print("All tests passed!")
+    print(string.format("Time taken: %.4f seconds", elapsed_time))
 end
 
 return {
