@@ -1,25 +1,26 @@
-local token_module = require("src.token.token")
-local token = token_module.TokenType
+local Token = require("src.token.token")
+local Token_Type = Token.TokenType
+local Lexer = require("src.lexer.lexer")
 
 local function testNextToken()
 	local input = "=+(){},;"
 
 	local tests = {
-		{ expectedType = token.ASSIGN, expectedLiteral = "=" },
-		{ expectedType = token.PLUS, expectedLiteral = "+" },
-		{ expectedType = token.LPAREN, expectedLiteral = "(" },
-		{ expectedType = token.RPAREN, expectedLiteral = ")" },
-		{ expectedType = token.LBRACE, expectedLiteral = "{" },
-		{ expectedType = token.RBRACE, expectedLiteral = "}" },
-		{ expectedType = token.COMMA, expectedLiteral = "," },
-		{ expectedType = token.SEMICOLON, expectedLiteral = ";" },
-		{ expectedType = token.EOF, expectedLiteral = "" },
+		{ expectedType = Token_Type.ASSIGN, expectedLiteral = "=" },
+		{ expectedType = Token_Type.PLUS, expectedLiteral = "+" },
+		{ expectedType = Token_Type.LPAREN, expectedLiteral = "(" },
+		{ expectedType = Token_Type.RPAREN, expectedLiteral = ")" },
+		{ expectedType = Token_Type.LBRACE, expectedLiteral = "{" },
+		{ expectedType = Token_Type.RBRACE, expectedLiteral = "}" },
+		{ expectedType = Token_Type.COMMA, expectedLiteral = "," },
+		{ expectedType = Token_Type.SEMICOLON, expectedLiteral = ";" },
+		{ expectedType = Token_Type.EOF, expectedLiteral = "" },
 	}
 
 	local l = Lexer:new(input)
 
 	for i, tt in ipairs(tests) do
-		local tok = l:nextToken()
+		local tok = l:NextToken()
 		if tok.type ~= tt.expectedType then
 			error(string.format("tests[%d] - tokentype wrong. expected=%q, got=%q", i, tt.expectedType, tok.type))
 		end
@@ -29,5 +30,11 @@ local function testNextToken()
 	end
 end
 
-testNextToken()
-print("All tests passed!")
+local function run_tests()
+    testNextToken()
+    print("All tests passed!")
+end
+
+return {
+    run_tests = run_tests
+}
