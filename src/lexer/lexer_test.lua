@@ -1,5 +1,5 @@
-local Token = require("src.token.token")
-local Token_Type = Token.TokenType
+local Token_Module = require("src.token.token")
+local Token_Type = Token_Module.TokenType
 local Lexer = require("src.lexer.lexer")
 
 local function testNextToken()

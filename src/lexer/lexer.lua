@@ -1,6 +1,6 @@
-local token_module = require("src.token.token")
-local Token = token_module.Token
-local token_type = token_module.TokenType
+local Token_Module = require("src.token.token")
+local Token = Token_Module.Token
+local Token_Type = Token_Module.TokenType
 
 -- Define the Lexer table
 local Lexer = {}
@@ -41,23 +41,23 @@ function Lexer:NextToken()
 
     -- Switch case to determine token type
     if self.ch == "=" then
-        tok = newToken(token_type.ASSIGN, self.ch)
+        tok = newToken(Token_Type.ASSIGN, self.ch)
     elseif self.ch == ";" then
-        tok = newToken(token_type.SEMICOLON, self.ch)
+        tok = newToken(Token_Type.SEMICOLON, self.ch)
     elseif self.ch == "(" then
-        tok = newToken(token_type.LPAREN, self.ch)
+        tok = newToken(Token_Type.LPAREN, self.ch)
     elseif self.ch == ")" then
-        tok = newToken(token_type.RPAREN, self.ch)
+        tok = newToken(Token_Type.RPAREN, self.ch)
     elseif self.ch == "," then
-        tok = newToken(token_type.COMMA, self.ch)
+        tok = newToken(Token_Type.COMMA, self.ch)
     elseif self.ch == "+" then
-        tok = newToken(token_type.PLUS, self.ch)
+        tok = newToken(Token_Type.PLUS, self.ch)
     elseif self.ch == "{" then
-        tok = newToken(token_type.LBRACE, self.ch)
+        tok = newToken(Token_Type.LBRACE, self.ch)
     elseif self.ch == "}" then
-        tok = newToken(token_type.RBRACE, self.ch)
+        tok = newToken(Token_Type.RBRACE, self.ch)
     elseif self.ch == "" then
-        tok = newToken(token_type.EOF, "")
+        tok = newToken(Token_Type.EOF, "")
     else
         -- Handle unknown character (optional)
         tok = newToken("ILLEGAL", self.ch)
